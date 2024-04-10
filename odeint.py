@@ -15,10 +15,9 @@
 	`odeint` and `odeint_mshooting` prepare and redirect to more specialized routines, detected automatically.
 	
 	
-	Additions by Yannik:
-	odeint_hybrid_alt & odeint_hybrid_raw methods were added, possibly removed in future versions (if 'with torch.set_grad_enabled(True):' of models.py overwrites 'with torch.no_grad():' of odeint_hybrid, and if
-	method of bisection doesn't cause large overhead)
-	
+	# ADAPTED FROM TORCHDYN: https://github.com/DiffEqML/torchdyn/blob/master/torchdyn/numerics/odeint.py
+	Changes by Y.P. Wotte:
+	odeint_hybrid_alt & odeint_hybrid_raw methods were added
 """
 from inspect import getargspec
 from typing import List, Tuple, Union, Callable
