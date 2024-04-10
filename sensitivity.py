@@ -11,14 +11,11 @@
 # limitations under the License.
 
 #######
-### hybrid-sensitivity with callback causing jumps in state & co-state during dynamics
+### ADAPTED FROM https://github.com/DiffEqML/torchdyn/blob/master/torchdyn/numerics/sensitivity.py
+###
+### Changes by Y.P. Wotte:
+### Hybrid-sensitivity with callback allowing jumps in state & co-state during time integration of dynamics
 #######
-
-# Future changes: 
-# - parallel (multi-batch) implementation 
-# - _gather_odefunc_hybrid_adjoint_full implementation
-# - make sure it doesn't fail when aug_f is used instead of f 
-
 
 from inspect import getfullargspec
 import torch
