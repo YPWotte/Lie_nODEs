@@ -1,19 +1,19 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Last modified on Apr 28 2022
+Last modified on Apr 10 2023
 
 @author: Y. P. Wotte
 
-Custom library for lie groups SO(3) and SE(3) using pytorch for compatibility 
+Custom library for Lie groups SO(3) and SE(3) using pytorch for compatibility 
 with pytorch, torchdyn  and functorch/vmap. 
 
 Features: 
-    - minimal covering Atlas using exponential charts
-    - numerical stability for edge cases
+    - minimal covering atlas for SE(3) using exponential charts
+    - various measures for numerical stability (global logarithmic map, differentiable sqrt(), clipped acos, ...)
     - construction of aribtrary smooth functions on SE(3) via partition of unity
     - efficient 1st derivative of exponential map on SE(3), as well as their inverses
-    - small and big Adjoint on SE(3), twists and skew forms 
+    - small and big adjoint on SE(3), twists and skew forms 
     - create random positive definite symmetric matrices, with parametrizations covering the full space of such matrices, via cholesky 
     - higher powers of skew-forms
     - 2nd derivative of exponential map on SE(3)
