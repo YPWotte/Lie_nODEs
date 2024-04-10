@@ -1,5 +1,3 @@
-# heavily adapted from latent-energy-shaping-main/src/control/learners.py
-
 import torch
 import torch.nn as nn
 from torch.autograd import grad 
