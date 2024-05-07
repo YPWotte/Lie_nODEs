@@ -3,7 +3,7 @@
 """
 Created on Thu Oct 12 10:19:34 2023
 
-@author: yannik
+@author: Y.P.Wotte
 """
 
 
@@ -175,22 +175,8 @@ for (name,H_23,d_upper) in zip(NAME_IBV,H_Target_23,DUPPER):
         os.makedirs('./Results/Figures/'+name)
     ###############
     #### Initial definitions
-    ###############
-    I = torch.diag(torch.tensor((0.01,0.01,0.01,1,1,1))).to(device) ; # Inertia Tensor
-    
-    
-    nh = 32
-    
-    V = nn.Sequential(nn.Linear(12, nh), nn.Softplus(), nn.Linear(nh, nh), nn.Tanh(), nn.Linear(nh, 1)).to(device)
-    
-    nf = 6
-    B = nn.Sequential(nn.Linear(18, nh), nn.Softplus(), nn.Linear(nh, nh), nn.Tanh(), nn.Linear(nh, nf),PosDefTriv()).to(device)
-    
-    for p in V.parameters(): torch.nn.init.normal_(p, mean=0.0, std=0.01)#torch.nn.init.zeros_(p)
-    for p in B.parameters(): torch.nn.init.normal_(p, mean=0.0, std=0.01) #torch.nn.init.zeros_(p)
-    
-    
-    
+    ###############   
+       
     th_max = torch.tensor(math.pi).to(device); d_max = torch.tensor(1).to(device); pw_max = torch.tensor(0.001).to(device); pv_max = torch.tensor(0.1).to(device); ch_min = torch.tensor(0).to(device); ch_max = torch.tensor(0).to(device); 
     prior = prior_dist_SE3(th_max,d_max,pw_max,pv_max,ch_min,ch_max,device)
     
@@ -578,24 +564,7 @@ for (name,H_23,d_upper) in zip(NAME_IBV,H_Target_23,DUPPER):
     plt.ylabel(ylabel)
     plt.title(title)
     plt.tight_layout()
-    plt.savefig('./Results/Figures/'+name+'/3_Pot_v_Dist_'+name+'.svg')
-    
-    
-    
-    
-    ## Damping: magnitude vs time, 
-    #   magnitude vs. angle, magnitude vs. distance: in both cases, average over various samplings of momentum
-    #   compare magnitude of damping along various paths for measure of symmetry
-    #   magnitude of angular part vs. magnitude of linear part
-    #   check off-center elements of damping matrix
-    # -> These are too complicated
-    
-    ## Damping is largely characterized by the extent to which it dissipates energy, and the extent to which it re-routes kinetic energy
-    # Interesting plots are:
-    # - cumulative dissipated energy -> plot of initial -(kinetic + potential) energy 
-    # kinetic + potential energy
-    # plot of various kinetic energy components, albeit far more difficult to characterize 
-    
+    plt.savefig('./Results/Figures/'+name+'/3_Pot_v_Dist_'+name+'.svg')    
     
     ## Energy components
     ylabel = 'Energy'
@@ -748,8 +717,6 @@ for (name,H_23,d_upper) in zip(NAME_IBV,H_Target_23,DUPPER):
 ###############
 #### Plotting: Training Progress
 ###############
-
-# Comment: Ctrl-4, Uncomment: Ctrl-5
 
 
 FOLDER = ['General_NN_20-07_to_NN_01-09', 'Quadratic_NN_25-07_to_NN_27-07']
