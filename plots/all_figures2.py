@@ -198,7 +198,7 @@ for (name,H_23,d_upper) in zip(NAME_IBV,H_Target_23,DUPPER):
     callbacks_adjoint = [ChartSwitchAugmented()]
     jspan_adjoint = 10
     
-    (I,B,V) = torch.load('IBV_fShaping_'+name+'.pt')# 'IBV_fShaping_quadratic_26_07_10:33.pt' (quadratic) #'IBV_fShaping_A_01_09_16:46.pt' (H_target[2,3] = -1), #torch.load('IBV_fShaping_A_18_08_12:09.pt') (H_target[2,3] = -2), # First gravity potential: torch.load('IBV_fShaping_04_08_10:57.pt') (H_target[2,3] = 0) # Best full potential: 'IBV_fShaping_21_07_10:07.pt'
+    (I,B,V) = torch.load('IBV_fShaping_'+name+'.pt')
     I = I.to(device); B = B.to(device); V = V.to(device)
     f = se3_Dynamics(I,B,V,target).to(device) # (I,B,V) = torch.load('IBV_fShaping.pt')
     
