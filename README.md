@@ -11,10 +11,8 @@ Repository for intrinsic neural ODEs on Lie groups. Currently based on the artic
 ## Code:
 
 ### Application to learning potential energy and damping injection:
-- general_shaping.ipynb
-- general_shaping_2.ipynb
-- general_shaping_3.ipynb
-- general_shaping_4.ipynb
+- quadratic_shaping.ipynb contains example from Section 6.1.2 
+- general_shaping.ipynb contains examples from Section 6.1.3, 6.2.2 and 6.2.3
 
 ### lietorch.py 
 Library for exponential maps on SO(3) and SE(3), derivative of exponential map, minimal exponential Atlas, partition of unity w.r.t. minimal expotential Atlas
