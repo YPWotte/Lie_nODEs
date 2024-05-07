@@ -3,7 +3,7 @@
 """
 Created on Thu Oct 12 10:19:34 2023
 
-@author: yannik
+@author: Y.P.Wotte
 """
 
 
@@ -176,21 +176,7 @@ for (name,H_23,d_upper) in zip(NAME_IBV,H_Target_23,DUPPER):
     ###############
     #### Initial definitions
     ###############
-    I = torch.diag(torch.tensor((0.01,0.01,0.01,1,1,1))).to(device) ; # Inertia Tensor
-    
-    
-    nh = 32
-    
-    V = nn.Sequential(nn.Linear(12, nh), nn.Softplus(), nn.Linear(nh, nh), nn.Tanh(), nn.Linear(nh, 1)).to(device)
-    
-    nf = 6
-    B = nn.Sequential(nn.Linear(18, nh), nn.Softplus(), nn.Linear(nh, nh), nn.Tanh(), nn.Linear(nh, nf),PosDefTriv()).to(device)
-    
-    for p in V.parameters(): torch.nn.init.normal_(p, mean=0.0, std=0.01)#torch.nn.init.zeros_(p)
-    for p in B.parameters(): torch.nn.init.normal_(p, mean=0.0, std=0.01) #torch.nn.init.zeros_(p)
-    
-    
-    
+      
     th_max = torch.tensor(math.pi).to(device); d_max = torch.tensor(1).to(device); pw_max = torch.tensor(0.001).to(device); pv_max = torch.tensor(0.1).to(device); ch_min = torch.tensor(0).to(device); ch_max = torch.tensor(0).to(device); 
     prior = prior_dist_SE3(th_max,d_max,pw_max,pv_max,ch_min,ch_max,device)
     
@@ -212,7 +198,8 @@ for (name,H_23,d_upper) in zip(NAME_IBV,H_Target_23,DUPPER):
     callbacks_adjoint = [ChartSwitchAugmented()]
     jspan_adjoint = 10
     
-    (I,B,V) = torch.load('IBV_fShaping_'+name+'.pt')# 'IBV_fShaping_quadratic_26_07_10:33.pt' (quadratic) #'IBV_fShaping_A_01_09_16:46.pt' (H_target[2,3] = -1), #torch.load('IBV_fShaping_A_18_08_12:09.pt') (H_target[2,3] = -2), # First gravity potential: torch.load('IBV_fShaping_04_08_10:57.pt') (H_target[2,3] = 0) # Best full potential: 'IBV_fShaping_21_07_10:07.pt'
+    (I,B,V) = torch.load('IBV_fShaping_'+name+'.pt')
+    
     I = I.to(device); B = B.to(device); V = V.to(device)
     f = se3_Dynamics(I,B,V,target).to(device) # (I,B,V) = torch.load('IBV_fShaping.pt')
     
