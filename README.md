@@ -1,5 +1,5 @@
 # Lie_nODEs
-Repository for intrinsic neural ODEs on Lie groups. Currently shows example of optimal potential energy shaping and damping injection control for a rigid body on the Lie group SE(3).
+Repository for intrinsic neural ODEs on Lie groups. Currently based on the article [Optimal Potential Energy Shaping on SE(3) via Neural ODEs on Lie groups](https://arxiv.org/abs/2401.15107), showing examples of optimal potential energy shaping and damping injection control for a rigid body on the Lie group SE(3).
 
 ## Dependencies:
 - [pytorch](https://github.com/pytorch/pytorch)  
